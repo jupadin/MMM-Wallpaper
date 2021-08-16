@@ -72,6 +72,6 @@ The following configuration options can be set and/or changed:
 | `imageOptions` | `string` | `"fit=fill&fill=blur"` | Define special options to fetch photo. Possible other options: `fit=scale` or `fit=crop`. See https://unsplash.com/documentation#dynamically-resizable-images and https://docs.imgix.com/apis/rendering/size/fit for further details. |
 
 ## Further references
-The idea to calculate the brightness of the photo is based Toni Tornado's answer on [StackOverflow](https://stackoverflow.com/questions/13762864/image-dark-light-detection-client-sided-script) and [here](https://stackoverflow.com/a/13766539).
+The idea to calculate the brightness of the photo is based Toni Tornado's answer on [StackOverflow](https://stackoverflow.com/questions/13762864/image-dark-light-detection-client-sided-script), which can be found [here](https://stackoverflow.com/a/13766539).
 
-His working code at jsFiddle can be found here at [jsFiddle](http://jsfiddle.net/s7Wx2/328/).
+His working code at jsFiddle can be found here at this [jsFiddle](http://jsfiddle.net/s7Wx2/328/).
