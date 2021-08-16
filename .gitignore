@@ -1,0 +1,17 @@
+# npm install directory
+/node_modules
+
+# Visual Studio Code
+.vscode/
+
+# OSX
+.DS_Store
+.Spotlight-V100
+.Trashes
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+
+# BackupFiles
+*.bak
