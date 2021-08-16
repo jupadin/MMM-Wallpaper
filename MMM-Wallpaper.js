@@ -76,12 +76,7 @@ Module.register("MMM-Wallpaper", {
 
             this.credentials.style.position = "absolute";
             this.credentials.style.bottom = "0px";
-
-            const scalingFactor = width / height;
-            console.log(scalingFactor);
-
             this.credentials.style.right = (window.innerWidth / 6) + "px";
-
 
             const icon = document.createElement("i");
             icon.id = "credentialsIcon";
@@ -93,8 +88,6 @@ Module.register("MMM-Wallpaper", {
 
             this.credentials.appendChild(icon);
             this.credentials.appendChild(name);
-            
-            // this.credentials.innerHTML = "Photo by " + this.photoData.authorName + " on Unsplash.";
         }
 
         // Add photo and credentials to wrapper
