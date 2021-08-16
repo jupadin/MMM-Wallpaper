@@ -35,7 +35,7 @@ npm install
             position: 'top_left',
             config: {
                 updateInterval: 0,
-                unsplashAPIKey: "",
+                unsplashAPIKey: "", // REQUIRED
                 collectionIDs: "",
                 userName: "",
                 photoID: "ALWzVxyAXGE", 
