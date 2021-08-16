@@ -12,6 +12,7 @@ The module is based on the work of [delightedCrow](https://github.com/delightedC
 This module uses the predefined MagicMirror functions without any further stuff (except a own class to determine the brightness of the photo) and serves as self-explainatory module to dynamically add and change a background image.
 
 ### To-Do's
+- [Fix] Positition of credentials on photo (Automatically calculate position based on width of image).
 - Automatically resize image, when window is resized.
 
 ## Installation
