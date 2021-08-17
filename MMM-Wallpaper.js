@@ -73,21 +73,13 @@ Module.register("MMM-Wallpaper", {
         if (this.credentials === null) {
             this.credentials = document.createElement("div");
             this.credentials.id = "credentials";
+            this.credentials.classList.add("credentials");
+            this.credentials.style.fontSize = "19px";
+            this.credentials.innerHTML = "<i class=\"fas fa-camera\"></i>" + " " + this.photoData.authorName;
 
             this.credentials.style.position = "absolute";
             this.credentials.style.bottom = "0px";
             this.credentials.style.right = (window.innerWidth / 6) + "px";
-
-            const icon = document.createElement("i");
-            icon.id = "credentialsIcon";
-            icon.className = "fas fa-camera";
-
-            const name = document.createElement("div");
-            name.id = "credentialsName";
-            name.innerHTML = this.photoData.authorName;
-
-            this.credentials.appendChild(icon);
-            this.credentials.appendChild(name);
         }
 
         // Add photo and credentials to wrapper
