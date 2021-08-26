@@ -32,13 +32,13 @@ npm install
     modules: [
         {
             module: 'MMM-Wallpaper',
-            position: 'top_left',
+            position: 'fullscreen_below',
             config: {
                 updateInterval: 0,
                 unsplashAPIKey: "", // REQUIRED
                 collectionIDs: "",
                 userName: "",
-                photoID: "ALWzVxyAXGE", 
+                photoID: "", 
                 autoDim: true, 
                 brightImageOpacity: 0.85, 
                 imageOrientation: "landscape",
@@ -63,7 +63,7 @@ The following configuration options can be set and/or changed:
 | `unsplashAPIKey` | `string` | `""` | APIKey to access the Unsplash databse **REQUIRED** |
 | `collectionIDs`| `string` | `""` | Comma separated list of Unsplash collection IDs |
 | `userName`| `string` | `""` | User name of Unsplash user to further restrict the randomized photo selection. |
-| `photoID` | `string` | `"ALWzVxyAXGE"` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName)**|
+| `photoID` | `string` | `""` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName)**|
 | `autoDim` | `bool` | `true` | Automatically darken bright images |
 | `brightImageOpacity` | `int` | `0.85` | Between 0 (black background) and 1 (visible opaque background), **Note: Only used when `autoDim` is `true`** |
 | `imageOrientation` | `string` | `"landscape"` | Desired photo orientation - can be portrait, landscape, or squarish |
