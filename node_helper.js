@@ -1,7 +1,7 @@
 /* Magic Mirror
  * Module: MMM-Wallpaper
  *
- * By Julian Dinter
+ * By jupadin
  * MIT Licensed.
  */
 
