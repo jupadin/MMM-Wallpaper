@@ -7,6 +7,7 @@
 
 const NodeHelper = require('node_helper');
 const { XMLHttpRequest } = require('xmlhttprequest');
+const Log = require('../../js/logger.js');
 
 module.exports = NodeHelper.create({
     start: function() {
@@ -23,8 +24,9 @@ module.exports = NodeHelper.create({
     },
 
     getData: function() {
-        console.info(this.name + ": Fetching data from Unsplash-Server");
-        this.fetchImage().then(fetchedData => {
+        const self = this;
+        console.info(this.name + ": Fetching data from Unsplash-Server...");
+        this.fetchImage(self).then(fetchedData => {
             this.sendSocketNotification("DATA", JSON.parse(fetchedData));
         }).catch(error => {
             console.log(error);
@@ -45,12 +47,19 @@ module.exports = NodeHelper.create({
         } else {
             url = "https://api.unsplash.com/photos/random?" + "client_id=" + this.config.unsplashAPIKey;
 
-            if (this.config.collections && !this.config.userName && !this.config.photoID) {
-                url += "&collections=" + this.config.collections;
+            // Handle query parameter
+            if (this.config.query) {
+                url += "&query=" + this.config.query;
+            }
+
+            // Filter photos based on given collectionsID or (!) user name
+            if (this.config.collectionIDs !== false && !this.config.userName && !this.config.photoID) {
+                url += "&collections=" + this.config.collectionIDs;
             } else if (this.config.userName) {
                 url += "&username=" + this.config.userName;
             }
 
+            // Handle orientation
             if (this.config.imageOrientation && !this.config.photoID) {
                 url += "&orientation=" + this.config.imageOrientation;
             }

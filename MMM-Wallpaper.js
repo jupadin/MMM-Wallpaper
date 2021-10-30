@@ -11,10 +11,11 @@ Module.register("MMM-Wallpaper", {
         header: "MMM-Wallpaper",
         animationSpeed: 0, // Show wallpaper immediately after loading
         updateInterval: 0, // Do not update the wallpaper
-        unsplashAPIKey: "",
-        collectionIDs: "", // Comma separated list of Unsplash collection ids
-        userName: "",
-        photoID: "", // The photoID can be found in the address bar in the standalone photo page.
+        unsplashAPIKey: false,
+        query: false,
+        collectionIDs: false, // Comma separated list of Unsplash collection ids
+        userName: false,
+        photoID: false, // The photoID can be found in the address bar in the standalone photo page.
         autoDim: true, // Automatically darken bright images
         brightImageOpacity: 0.85, // Between 0 (black background) and 1 (visible opaque background), only used when autoDim is true
         imageOrientation: "landscape", // Desired photo orientation - can be portrait, landscape, or squarish

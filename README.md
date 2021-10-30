@@ -35,9 +35,10 @@ npm install
             config: {
                 updateInterval: 0,
                 unsplashAPIKey: "", // REQUIRED
-                collectionIDs: "",
-                userName: "",
-                photoID: "", 
+                query: false,
+                collectionIDs: false,
+                userName: false,
+                photoID: false, 
                 autoDim: true, 
                 brightImageOpacity: 0.85, 
                 imageOrientation: "landscape",
@@ -59,10 +60,11 @@ The following configuration options can be set and/or changed:
 | Option | Type | Default | Description |
 | ---- | ---- | ---- | ---- |
 | `updateInterval` | `int` | `0` | Interval, when a new background image is fetched (`0` implies a single fetch) |
-| `unsplashAPIKey` | `string` | `""` | APIKey to access the Unsplash databse **REQUIRED** |
-| `collectionIDs`| `string` | `""` | Comma separated list of Unsplash collection IDs |
-| `userName`| `string` | `""` | User name of Unsplash user to further restrict the randomized photo selection. |
-| `photoID` | `string` | `""` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName)**|
+| `unsplashAPIKey` | `string` | `false` | APIKey to access the Unsplash databse **REQUIRED** |
+| `query` | `string` | `false` | Search term for specific photos, from which a random photo should then be chosen as background |
+| `collectionIDs`| `array` | `false` | List of Unsplash collection IDs (example: `[123, 456]`) |
+| `userName`| `string` | `false` | User name of Unsplash user to further restrict the randomized photo selection. |
+| `photoID` | `string` | `false` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName)**|
 | `autoDim` | `bool` | `true` | Automatically darken bright images |
 | `brightImageOpacity` | `int` | `0.85` | Between 0 (black background) and 1 (visible opaque background), **Note: Only used when `autoDim` is `true`** |
 | `imageOrientation` | `string` | `"landscape"` | Desired photo orientation - can be portrait, landscape, or squarish |
