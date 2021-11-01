@@ -27,7 +27,7 @@ module.exports = NodeHelper.create({
         const self = this;
         console.info(this.name + ": Fetching data from Unsplash-Server...");
         this.fetchImage(self).then(fetchedData => {
-            this.sendSocketNotification("DATA", JSON.parse(fetchedData));
+            self.sendSocketNotification("DATA", JSON.parse(fetchedData));
         }).catch(error => {
             console.log(error);
         });
@@ -35,6 +35,9 @@ module.exports = NodeHelper.create({
         if (this.config.updateInterval > 0) {
             // Set timeout to continuously fetch new data from Unsplash-Server
             setTimeout(this.getData.bind(this), this.config.updateInterval);
+        } else if (this.config.collectionIDs !== false) {
+            // If a collection ID is given, fetch new photo(s) all 10 minutes
+            setTimeout(this.getData.bind(this), 10 * 60 * 1000);
         }
     },
 
