@@ -64,15 +64,15 @@ The following configuration options can be set and/or changed:
 | `query` | `string` | `false` | Search term for specific photos, from which a random photo should then be chosen as background |
 | `collectionIDs`| `array` | `false` | List of Unsplash collection IDs (example: `[123, 456]`) |
 | `userName`| `string` | `false` | User name of Unsplash user to further restrict the randomized photo selection. |
-| `photoID` | `string` | `false` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName)**|
+| `photoID` | `string` | `false` | The photoID can be found in the address bar in the standalone photo page. **Note: This option (if set) disables the background image randomized background change by given collectionIDs and / or userName and / or query)**|
 | `autoDim` | `bool` | `true` | Automatically darken bright images |
-| `brightImageOpacity` | `int` | `0.85` | Between 0 (black background) and 1 (visible opaque background), **Note: Only used when `autoDim` is `true`** |
+| `brightImageOpacity` | `double` | `0.85` | Between 0 (black background) and 1 (visible opaque background), **Note: Only used when `autoDim` is `true`** |
 | `imageOrientation` | `string` | `"landscape"` | Desired photo orientation - can be portrait, landscape, or squarish |
-| `imageWidth` | `string` | `"auto"` | `"auto"` set width to screen, or specify a hard-coded with in pixels |
-| `imageHeight` | `string` | `"auto"` | `"auto"` set height to screen, or specify a hard-coded height in pixels |
+| `imageWidth` | `string` | `"auto"` | Set width to (current) screen / window width, or specify a hard-coded with in pixels |
+| `imageHeight` | `string` | `"auto"` | Set height to (current) screen / window height, or specify a hard-coded height in pixels |
 | `imageOptions` | `string` | `"fit=fill&fill=blur"` | Define special options to fetch photo. Possible other options: `fit=scale` or `fit=crop`. See https://unsplash.com/documentation#dynamically-resizable-images and https://docs.imgix.com/apis/rendering/size/fit for further details. |
 
 ## Further references
-The idea to calculate the brightness of the photo is based Toni Tornado's answer on [StackOverflow](https://stackoverflow.com/questions/13762864/image-dark-light-detection-client-sided-script), which can be found [here](https://stackoverflow.com/a/13766539).
+The idea to calculate the brightness of the photo is taken from the Magic Mirror module of [delightedCrow](https://github.com/delightedCrow/WallberryTheme) and is based on Toni Tornado's answer on [StackOverflow](https://stackoverflow.com/questions/13762864/image-dark-light-detection-client-sided-script), which can be found [here](https://stackoverflow.com/a/13766539).
 
-His working code at jsFiddle can be found here at this [jsFiddle](http://jsfiddle.net/s7Wx2/328/).
+His working code at jsFiddle can be found at this [jsFiddle](http://jsfiddle.net/s7Wx2/328/).
