@@ -31,13 +31,21 @@ module.exports = NodeHelper.create({
         }).catch(error => {
             console.log(error);
         });
-        // If you want to continuously update the wallpaper
-        if (this.config.updateInterval > 0) {
-            // Set timeout to continuously fetch new data from Unsplash-Server
-            setTimeout(this.getData.bind(this), this.config.updateInterval);
-        } else if (this.config.collectionIDs !== false) {
-            // If a collection ID is given, fetch new photo(s) all 10 minutes
-            setTimeout(this.getData.bind(this), 10 * 60 * 1000);
+
+        // Set default update interval to 10 minutes
+        let updateInterval = 10 * 60 * 1000;
+
+        // If there is no photoID given
+        // (So either a random photo is requested, a collectionID is given or a query / search keyword)
+        if (!this.config.photoID) {
+            // If there is an update interval specified,
+            if (this.config.updateInterval > 0) {
+                // then use it or
+                updateInterval = this.config.updateInterval;
+            }
+            // use the default update interval to update (change) the (random?) wallpaper from the collection with the given collectionID or a wallpaper returned by the query / search keyword
+            // (Otherwise we could have used the photoID option to only show a single wallpaper, instead of the collectionID (which would or then should only have a single wallpaper in it))
+            setTimeout(this.getData.bind(this), updateInterval);
         }
     },
 
