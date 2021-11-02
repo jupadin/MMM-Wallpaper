@@ -63,7 +63,7 @@ module.exports = NodeHelper.create({
             }
 
             // Handle orientation
-            if (this.config.imageOrientation && !this.config.photoID) {
+            if (!this.config.collectionIDs && !this.config.photoID && this.config.imageOrientation) {
                 url += "&orientation=" + this.config.imageOrientation;
             }
         }
