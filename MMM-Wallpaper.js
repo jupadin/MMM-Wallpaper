@@ -12,6 +12,7 @@ Module.register("MMM-Wallpaper", {
         animationSpeed: 0, // Show wallpaper immediately after loading
         updateInterval: 0, // Do not update the wallpaper
         unsplashAPIKey: false,
+        showCredentials: true,
         query: false,
         collectionIDs: false, // Comma separated list of Unsplash collection ids
         userName: false,
@@ -70,22 +71,26 @@ Module.register("MMM-Wallpaper", {
         wrapper.style.widht = width;
         wrapper.style.height = height;
         
-        // Create credentials div.
-        if (this.credentials === null) {
-            this.credentials = document.createElement("div");
-            this.credentials.id = "credentials";
-            this.credentials.classList.add("credentials");
-            this.credentials.style.fontSize = "19px";
-            this.credentials.innerHTML = "<i class=\"fas fa-camera\"></i>" + " " + this.photoData.authorName;
-
-            this.credentials.style.position = "absolute";
-            this.credentials.style.bottom = "0px";
-            this.credentials.style.right = (window.innerWidth / 6) + "px";
-        }
-
-        // Add photo and credentials to wrapper
+        // Add photo to wrapper
         wrapper.appendChild(this.img);
-        wrapper.appendChild(this.credentials);
+        
+        // Create credentials div.
+        if (this.config.showCredentials) { 
+            if (this.credentials === null) {
+                this.credentials = document.createElement("div");
+                this.credentials.id = "credentials";
+                this.credentials.classList.add("credentials");
+                this.credentials.style.fontSize = "19px";
+                this.credentials.innerHTML = "<i class=\"fas fa-camera\"></i>" + " " + this.photoData.authorName;
+
+                this.credentials.style.position = "absolute";
+                this.credentials.style.bottom = "0px";
+                this.credentials.style.right = (window.innerWidth / 6) + "px";
+            }
+            
+            // Add credentials to wrapper
+            wrapper.appendChild(this.credentials);
+        }
 
         // Return the wrapper to the dom.
         return wrapper;
