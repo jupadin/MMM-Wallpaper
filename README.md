@@ -35,6 +35,7 @@ npm install
             config: {
                 updateInterval: 0,
                 unsplashAPIKey: "", // REQUIRED
+                showCredentials: true,
                 query: false,
                 collectionIDs: false,
                 userName: false,
@@ -61,6 +62,7 @@ The following configuration options can be set and/or changed:
 | ---- | ---- | ---- | ---- |
 | `updateInterval` | `int` | `0` | Interval, when a new background image is fetched (`0` implies a single fetch) |
 | `unsplashAPIKey` | `string` | `false` | APIKey to access the Unsplash databse **REQUIRED** |
+| `showCredentials` | `string` | `false` | Show credentials for displaying wallpaper |
 | `query` | `string` | `false` | Search term for specific photos, from which a random photo should then be chosen as background |
 | `collectionIDs`| `array` | `false` | List of Unsplash collection IDs (example: `[123, 456]`) |
 | `userName`| `string` | `false` | User name of Unsplash user to further restrict the randomized photo selection. |
