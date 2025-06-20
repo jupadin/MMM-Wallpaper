@@ -6,7 +6,6 @@
  */
 
 const NodeHelper = require('node_helper');
-const { XMLHttpRequest } = require('xmlhttprequest');
 const Log = require('../../js/logger.js');
 
 module.exports = NodeHelper.create({
@@ -24,33 +23,15 @@ module.exports = NodeHelper.create({
     },
 
     getData: function() {
+        Log.info(`${this.name}: Fetching data from Unsplash-Server...`);
         const self = this;
-        console.info(this.name + ": Fetching data from Unsplash-Server...");
-        this.fetchImage(self).then(fetchedData => {
-            self.sendSocketNotification("DATA", JSON.parse(fetchedData));
-        }).catch(error => {
-            console.log(error);
-        });
 
-        // Set default update interval to 10 minutes
-        let updateInterval = 10 * 60 * 1000;
-
-        // If there is no photoID given
-        // (So either a random photo is requested, a collectionID is given or a query / search keyword)
-        if (!this.config.photoID) {
-            // If there is an update interval specified,
-            if (this.config.updateInterval > 0) {
-                // then use it or
-                updateInterval = this.config.updateInterval;
-            }
-            // use the default update interval to update (change) the (random?) wallpaper from the collection with the given collectionID or a wallpaper returned by the query / search keyword
-            // (Otherwise we could have used the photoID option to only show a single wallpaper, instead of the collectionID (which would or then should only have a single wallpaper in it))
-            setTimeout(this.getData.bind(this), updateInterval);
-        }
-    },
-
-    fetchImage: function() {
         let url = null;
+        let fetchOptions = {
+            headers: {
+                "Accept-Version": "v1" // see https://unsplash.com/documentation#version
+            }
+        }
 
         // If a specific photo is requested...
         if (this.config.photoID) {
@@ -76,17 +57,36 @@ module.exports = NodeHelper.create({
             }
         }
 
-        return new Promise((resolve, reject) => {
-            const apiRequest = new XMLHttpRequest();
-            apiRequest.open("GET", url);
-            apiRequest.onload = () => {
-                if (apiRequest.status != 200) {
-                    reject(apiRequest.statusText);
-                }
-                resolve(apiRequest.responseText);
-            };
-            apiRequest.setRequestHeader("Accept-Version", "v1"); // see https://unsplash.com/documentation#version
-            apiRequest.send();
+        fetch(url, fetchOptions)
+        .then(response => {
+            if (response.status != 200) {
+                throw `Error fetching wallpaper from Unsplash with status code ${response.status}`;
+            }
+            return response.json();
+        })
+        .then(data => {
+            self.sendSocketNotification("DATA", data);
+            return;
+        })
+        .catch(error => {
+            Log.debug(`${this.name}: ${error}.`);
+            return;
         });
-    }
+
+        // Set default update interval to 10 minutes
+        let updateInterval = 10 * 60 * 1000;
+
+        // If there is no photoID given
+        // (So either a random photo is requested, a collectionID is given or a query / search keyword)
+        if (!this.config.photoID) {
+            // If there is an update interval specified,
+            if (this.config.updateInterval > 0) {
+                // then use it or
+                updateInterval = this.config.updateInterval;
+            }
+            // use the default update interval to update (change) the (random?) wallpaper from the collection with the given collectionID or a wallpaper returned by the query / search keyword
+            // (Otherwise we could have used the photoID option to only show a single wallpaper, instead of the collectionID (which would or then should only have a single wallpaper in it))
+            setTimeout(this.getData.bind(this), updateInterval);
+        }
+    },
 });
